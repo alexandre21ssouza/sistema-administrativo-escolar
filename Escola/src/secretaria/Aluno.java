@@ -1,5 +1,7 @@
 package secretaria;
 
+import javax.swing.JOptionPane;
+
 public class Aluno {
 
 	// atributos
@@ -27,7 +29,7 @@ public class Aluno {
 		this.nomeDaMae = nomeDaMae;
 	}
 
-	//Getters and Setters
+	//Getters 
 	
 	public int getId() {
 		return id;
@@ -67,16 +69,51 @@ public class Aluno {
 	public String getNomeDaMae() {
 		return nomeDaMae;
 	}
+	
+	//Setters
 
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public void setIdade(int idade) {
+		this.idade = idade;
+	}
+
+	public void setMatricula(int matricula) {
+		this.matricula = matricula;
+	}
+
+	public void setTurma(String turma) {
+		this.turma = turma;
+	}
+
+	public void setNomeProfessor(String nomeProfessor) {
+		this.nomeProfessor = nomeProfessor;
+	}
+
+	public void setTurno(String turno) {
+		this.turno = turno;
+	}
+
+	public void setNomeDaMae(String nomeDaMae) {
+		this.nomeDaMae = nomeDaMae;
+	}
 
 	public void informacoes() {
-		System.out.println("Id do aluno: " + id);
-		System.out.println("Nome do aluno: " + nome);
-		System.out.println("Matricula do aluno: " + idade);
-		System.out.println("Matricula do aluno: " + matricula);
-		System.out.println("Matricula do aluno: " + turma);
-		System.out.println("Matricula do aluno: " + nomeProfessor);
-		System.out.println("Matricula do aluno: " + turno);
-		System.out.println("Matricula do aluno: " + nomeDaMae);
+		JOptionPane.showMessageDialog(null, "Id do aluno: " + id + "Nome do aluno(a): " + nome + "Idade do aluno(a): " + idade + "Matricula do aluno(a): " + matricula + 
+				"Turma do aluno(a): " + turma + "Professor(a) do aluno(a): " + nomeProfessor + "Turno do aluno(a): " + turno + "Nome da mãe do aluno(a): " + nomeDaMae, nome, id, null);
+		System.out.println("Id do aluno(a): " + id);
+		System.out.println("Nome do aluno(a): " + nome);
+		System.out.println("Idade do aluno(a): " + idade);
+		System.out.println("Matricula do aluno(a): " + matricula);
+		System.out.println("Turma do aluno: " + turma);
+		System.out.println("Professor(a) do aluno(a): " + nomeProfessor);
+		System.out.println("Turno do aluno(a): " + turno);
+		System.out.println("Nome da mãe do aluno(a): " + nomeDaMae);
 	}
 }
