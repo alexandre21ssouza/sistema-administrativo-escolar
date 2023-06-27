@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 public class AlunoCreate {
 
 	// Create
-	ArrayList<Aluno> listaAlunos = new ArrayList<>();
+	public ArrayList<Aluno> listaAlunos = new ArrayList<>();
 	public void criarAluno() {
 
 		int id = 0;
