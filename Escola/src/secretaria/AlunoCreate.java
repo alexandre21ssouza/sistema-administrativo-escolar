@@ -1,11 +1,13 @@
 package secretaria;
 
+import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 
 public class AlunoCreate {
 
 	// Create
-
+	ArrayList<Aluno> listaAlunos = new ArrayList<>();
 	public void criarAluno() {
 
 		int id = 0;
@@ -48,7 +50,10 @@ public class AlunoCreate {
 		String nomeDaMae = JOptionPane.showInputDialog("Digite o nome da mãe do aluno: ");
 
 		Aluno pessoa = new Aluno(id, nome, idade, matricula, turma, nomeProfessor, turno, nomeDaMae);
-
+		
+		listaAlunos.add(pessoa);
+		
+		pessoa.informacoes();
 	}
 
 }
