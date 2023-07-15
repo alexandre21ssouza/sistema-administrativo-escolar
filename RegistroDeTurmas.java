@@ -7,9 +7,10 @@ public class RegistroDeTurmas {
 	ArrayList<Aluno> listaAlunos = new ArrayList<>();
 	
 	public static void main(String[] args) {
-		AlunoCreate aluno = new AlunoCreate();
+		CrudAluno aluno = new CrudAluno();
 		
-	
+		aluno.createAluno();
+		
 		
 
 	}

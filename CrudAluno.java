@@ -12,24 +12,43 @@ public class CrudAluno {
 		listaAlunos = new ArrayList<Aluno>();
 	}
 
-	public void criarAluno() {
+	public void createAluno() {
 
 		int id = 0;
 		while (id == 0) {
 			String identificador = JOptionPane.showInputDialog("Digite o nome Id do aluno: ");
 			try {
 				id = Integer.parseInt(identificador);
-				JOptionPane.showMessageDialog(null, "Id ok!");
+				JOptionPane.showMessageDialog(null, "Id válido!");
 			} catch (NumberFormatException e) {
 
-				JOptionPane.showMessageDialog(null, " Digite um número!");
+				JOptionPane.showMessageDialog(null, " Digite um número válido!");
 			}
 
 		}
-
-		String nome = JOptionPane.showInputDialog("Digite o nome do aluno: ");
+		
+		String nome = "";
+		 while(nome.isBlank() || hasNumbers(nome)) {
+			 nome = JOptionPane.showInputDialog("Digite o nome do aluno: ");
+		
+			if(nome.isBlank()) {
+				JOptionPane.showMessageDialog(null, " Digite um nome válido!");
+			}
+	
+			else if(hasNumbers(nome)) {
+				JOptionPane.showMessageDialog(null, " Digite um nome sem números!");
+				
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "Nome válido!");
+				
+			}
+		 }
+			
+		
+				
+		
 		int idade = 0;
-
 		String entradaIdade = JOptionPane.showInputDialog("Digite idade do aluno: ");
 		while (idade == 0) {
 			int confirmaIdade = Integer.parseInt(entradaIdade);
@@ -86,15 +105,16 @@ public class CrudAluno {
 			String identificador = JOptionPane.showInputDialog("Digite o nome Id do aluno: ");
 			try {
 				id = Integer.parseInt(identificador);
-				JOptionPane.showMessageDialog(null, "Id ok!");
+				JOptionPane.showMessageDialog(null, "Id válido!");
 			} catch (NumberFormatException e) {
 
-				JOptionPane.showMessageDialog(null, " Digite um número!");
+				JOptionPane.showMessageDialog(null, " Digite um número válido!");
 			}
 
 		}
-
-		String nome = JOptionPane.showInputDialog("Digite o nome do aluno: ");
+		
+		String nome;
+		nome = JOptionPane.showInputDialog("Digite o nome do aluno: ");
 		int idade = 0;
 
 		String entradaIdade = JOptionPane.showInputDialog("Digite idade do aluno: ");
@@ -143,5 +163,9 @@ public class CrudAluno {
 
 	public void deleteAluno() {
 
+	}
+	
+	private boolean hasNumbers(String texto) {
+		return texto.matches(".*\\d.*");
 	}
 }
