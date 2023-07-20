@@ -26,51 +26,121 @@ public class CrudAluno {
 			}
 
 		}
-		
+
 		String nome = "";
-		 while(nome.isBlank() || hasNumbers(nome)) {
-			 nome = JOptionPane.showInputDialog("Digite o nome do aluno: ");
-		
-			if(nome.isBlank()) {
+		while (nome.isBlank() || hasNumbers(nome)) {
+			nome = JOptionPane.showInputDialog("Digite o nome do aluno: ");
+
+			if (nome.isBlank()) {
 				JOptionPane.showMessageDialog(null, " Digite um nome válido!");
 			}
-	
-			else if(hasNumbers(nome)) {
+
+			else if (hasNumbers(nome)) {
 				JOptionPane.showMessageDialog(null, " Digite um nome sem números!");
-				
-			}
-			else {
+
+			} else {
 				JOptionPane.showMessageDialog(null, "Nome válido!");
-				
-			}
-		 }
-			
-		
-				
-		
-		int idade = 0;
-		String entradaIdade = JOptionPane.showInputDialog("Digite idade do aluno: ");
-		while (idade == 0) {
-			int confirmaIdade = Integer.parseInt(entradaIdade);
-			if (confirmaIdade > 100 || confirmaIdade < 11) {
-				JOptionPane.showMessageDialog(null, "Idade do Aluno está acima 100 ou abaixo de 11 Digite corretamente",
-						entradaIdade, idade);
-				idade = 0;
-				entradaIdade = JOptionPane.showInputDialog("Digite idade do aluno: ");
-			} else if (confirmaIdade < 100 || confirmaIdade >= 11) {
-				idade = confirmaIdade;
-				JOptionPane.showMessageDialog(null, "Idade está ok!");
-				System.out.println("Idade está ok!");
+
 			}
 		}
 
-		String matriculaAluno = JOptionPane.showInputDialog("Digite a matricula do aluno: ");
-		int matricula = Integer.parseInt(matriculaAluno);
-		String turma = JOptionPane.showInputDialog("Digite a turma do aluno: ");
-		String nomeProfessor = JOptionPane.showInputDialog("Digite o nome do professor do aluno: ");
-		;
-		String turno = JOptionPane.showInputDialog("Digite o turno do aluno: ");
-		String nomeDaMae = JOptionPane.showInputDialog("Digite o nome da mãe do aluno: ");
+		int idade = 0;
+		while (idade == 0 || idade > 100) {
+			String entradaIdade = JOptionPane.showInputDialog("Digite idade do aluno: ");
+
+			try {
+				int confirmaIdade = Integer.parseInt(entradaIdade);
+				if (confirmaIdade > 100 || confirmaIdade < 11) {
+					JOptionPane.showMessageDialog(null,
+							"Idade do Aluno está acima 100 ou abaixo de 11 Digite corretamente", entradaIdade, idade);
+					idade = 0;
+
+				} else if (confirmaIdade < 100 || confirmaIdade >= 11) {
+					idade = confirmaIdade;
+					JOptionPane.showMessageDialog(null, "Idade válida!");
+
+				}
+			} catch (NumberFormatException e) {
+				JOptionPane.showMessageDialog(null, "Digite uma idade válida");
+			}
+		}
+
+		String matriculaAluno = "";
+		int matricula = 00000;
+		int digitos = 5;
+		String avancar = "";
+		while (matriculaAluno.isBlank() || avancar.equals("")) {
+
+			do {
+				matriculaAluno = JOptionPane
+						.showInputDialog("Insira a matricula do aluno de no mínimo " + digitos + " digitos: ");
+
+			} while (matriculaAluno.length() < digitos);
+			{
+
+				try {
+					matricula = Integer.parseInt(matriculaAluno);
+					JOptionPane.showInternalMessageDialog(null, "Matrícula válida!");
+					if (matricula == 00000) {
+						avancar = "";
+						JOptionPane.showInternalMessageDialog(null, "Digite a matricula diferente de " + matricula);
+					} else {
+						avancar = "avançar";
+					}
+
+				} catch (NumberFormatException e) {
+					JOptionPane.showMessageDialog(null, "Digite uma matrícula válida!");
+					avancar = "";
+				}
+
+			}
+		}
+
+		String turma = "";
+		String nomeProfessor = "";
+		while (turma.isBlank() || !turma.equals("A") || !turma.equals("a") || !turma.equals("B")
+				|| !turma.equals("b")) {
+
+			turma = JOptionPane.showInputDialog("Digite a turma do aluno: ");
+
+			if (turma == "A" || turma == "a") {
+				nomeProfessor = "Sandro";
+			} else if (turma == "B" || turma == "b") {
+				nomeProfessor = "Douglas";
+			} else {
+
+			}
+
+		}
+
+		String turno = "";
+		while (turno.isBlank()) {
+
+			turno = JOptionPane.showInputDialog("Digite o turno do aluno: ");
+
+			if (turno == "Matutino" || turno == "matutino") {
+				JOptionPane.showMessageDialog(null, "Turno válido!");
+			} else if (turno == "Vespertino" || turno == "vespertino") {
+				JOptionPane.showInternalMessageDialog(null, "Turno válido!");
+			} else {
+				JOptionPane.showInternalMessageDialog(null, "Turno inválido!");
+				turno = "";
+			}
+		}
+
+		String nomeDaMae = "";
+		while (nomeDaMae.isBlank()) {
+
+			nomeDaMae = JOptionPane.showInputDialog("Digite o nome da mãe do aluno: ");
+
+			if (nomeDaMae.isBlank()) {
+				JOptionPane.showMessageDialog(null, "Digite um nome!");
+			} else if (hasNumbers(nomeDaMae)) {
+				JOptionPane.showMessageDialog(null, "Digite um nome válido!");
+			} else {
+				JOptionPane.showInternalMessageDialog(null, "Nome da Mãe válido!");
+			}
+		}
 
 		Aluno pessoa = new Aluno(id, nome, idade, matricula, turma, nomeProfessor, turno, nomeDaMae);
 
@@ -112,7 +182,7 @@ public class CrudAluno {
 			}
 
 		}
-		
+
 		String nome;
 		nome = JOptionPane.showInputDialog("Digite o nome do aluno: ");
 		int idade = 0;
@@ -164,7 +234,7 @@ public class CrudAluno {
 	public void deleteAluno() {
 
 	}
-	
+
 	private boolean hasNumbers(String texto) {
 		return texto.matches(".*\\d.*");
 	}
