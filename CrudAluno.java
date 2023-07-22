@@ -66,7 +66,7 @@ public class CrudAluno {
 		}
 
 		String matriculaAluno = "";
-		int matricula = 00000;
+		int matricula = 0;
 		int digitos = 5;
 		String avancar = "";
 		while (matriculaAluno.isBlank() || avancar.equals("")) {
@@ -75,16 +75,16 @@ public class CrudAluno {
 				matriculaAluno = JOptionPane
 						.showInputDialog("Insira a matricula do aluno de no mínimo " + digitos + " digitos: ");
 
-			} while (matriculaAluno.length() < digitos);
-			{
+			} while (matriculaAluno.length() != digitos);
+			
 
 				try {
 					matricula = Integer.parseInt(matriculaAluno);
-					JOptionPane.showInternalMessageDialog(null, "Matrícula válida!");
-					if (matricula == 00000) {
+					if (matricula == 0) {
 						avancar = "";
-						JOptionPane.showInternalMessageDialog(null, "Digite a matricula diferente de " + matricula);
+						JOptionPane.showMessageDialog(null, "Digite a matricula diferente de " + matricula);
 					} else {
+						JOptionPane.showMessageDialog(null, "Matrícula válida!");
 						avancar = "avançar";
 					}
 
@@ -93,21 +93,24 @@ public class CrudAluno {
 					avancar = "";
 				}
 
-			}
+			
+			
+			
 		}
 
 		String turma = "";
 		String nomeProfessor = "";
-		while (turma.isBlank() || !turma.equals("A") || !turma.equals("a") || !turma.equals("B")
-				|| !turma.equals("b")) {
+		while (turma.isBlank() ) {
 
-			turma = JOptionPane.showInputDialog("Digite a turma do aluno: ");
+			turma = JOptionPane.showInputDialog("Digite A ou B para indicar a turma do aluno: ");
 
 			if (turma == "A" || turma == "a") {
 				nomeProfessor = "Sandro";
 			} else if (turma == "B" || turma == "b") {
 				nomeProfessor = "Douglas";
 			} else {
+				JOptionPane.showInternalMessageDialog(null, "Digite uma turma válida!");
+				turma = "";
 
 			}
 
@@ -145,13 +148,24 @@ public class CrudAluno {
 		Aluno pessoa = new Aluno(id, nome, idade, matricula, turma, nomeProfessor, turno, nomeDaMae);
 
 		listaAlunos.add(pessoa);
+		mostrarListaDeAlunos(listaAlunos);
 		pessoa.informacoes();
 
-		for (Aluno g : listaAlunos) {
-			System.out.println("---------------------------------------------//-------------");
-			System.out.println("Nome do Aluno: " + g.getNome());
-		}
+	
 
+	}
+	
+	public void mostrarListaDeAlunos(ArrayList<Aluno> listaAlunos){
+		StringBuilder dadosAlunos = new StringBuilder("Lista de Alunos:/n");
+		
+		for(Aluno pessoa: listaAlunos) {
+			dadosAlunos.append("Id:/n ").append(pessoa.getId()).append("Nome:/n ").append(pessoa.getNome()).append("Idade:n/ ").append(pessoa.getIdade())
+			.append("Matrícula:n/ ").append(pessoa.getMatricula()).append("Turma:n/ ").append(pessoa.getTurma()).append("Nome do Professor:n/ ")
+			.append(pessoa.getNomeProfessor()).append("Turno:n/ ").append(pessoa.getTurno()).append("Nome da Mãe:n/ ").append(pessoa.getNomeDaMae());
+		}
+		
+		JOptionPane.showInternalMessageDialog(null, dadosAlunos.toString());
+		
 	}
 
 	public void readAluno() {
