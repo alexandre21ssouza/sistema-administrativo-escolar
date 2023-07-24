@@ -104,16 +104,5 @@ public class Aluno {
 		this.nomeDaMae = nomeDaMae;
 	}
 
-	public void informacoes() {
-		JOptionPane.showMessageDialog(null, "Id do aluno: " + id + "Nome do aluno(a): " + nome + "Idade do aluno(a): " + idade + "Matricula do aluno(a): " + matricula + 
-				"Turma do aluno(a): " + turma + "Professor(a) do aluno(a): " + nomeProfessor + "Turno do aluno(a): " + turno + "Nome da mãe do aluno(a): " + nomeDaMae, nome, id, null);
-		System.out.println("Id do aluno(a): " + id);
-		System.out.println("Nome do aluno(a): " + nome);
-		System.out.println("Idade do aluno(a): " + idade);
-		System.out.println("Matricula do aluno(a): " + matricula);
-		System.out.println("Turma do aluno: " + turma);
-		System.out.println("Professor(a) do aluno(a): " + nomeProfessor);
-		System.out.println("Turno do aluno(a): " + turno);
-		System.out.println("Nome da mãe do aluno(a): " + nomeDaMae);
-	}
+	
 }
