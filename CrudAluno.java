@@ -93,23 +93,20 @@ public class CrudAluno {
 					avancar = "";
 				}
 
-			
-			
-			
 		}
 
 		String turma = "";
 		String nomeProfessor = "";
-		while (turma.isBlank() ) {
+		while (turma.isBlank()) {
 
 			turma = JOptionPane.showInputDialog("Digite A ou B para indicar a turma do aluno: ");
 
-			if (turma == "A" || turma == "a") {
+			if(turma.equalsIgnoreCase("A")) {
 				nomeProfessor = "Sandro";
-			} else if (turma == "B" || turma == "b") {
+			} else if (turma.equalsIgnoreCase("B")) {
 				nomeProfessor = "Douglas";
 			} else {
-				JOptionPane.showInternalMessageDialog(null, "Digite uma turma válida!");
+				JOptionPane.showMessageDialog(null, "Digite uma turma válida!");
 				turma = "";
 
 			}
@@ -121,12 +118,12 @@ public class CrudAluno {
 
 			turno = JOptionPane.showInputDialog("Digite o turno do aluno: ");
 
-			if (turno == "Matutino" || turno == "matutino") {
+			if (turno.equalsIgnoreCase("Matutino")) {
 				JOptionPane.showMessageDialog(null, "Turno válido!");
-			} else if (turno == "Vespertino" || turno == "vespertino") {
-				JOptionPane.showInternalMessageDialog(null, "Turno válido!");
+			} else if (turno.equalsIgnoreCase("Vespertino")) {
+				JOptionPane.showMessageDialog(null, "Turno válido!");
 			} else {
-				JOptionPane.showInternalMessageDialog(null, "Turno inválido!");
+				JOptionPane.showMessageDialog(null, "Turno inválido!");
 				turno = "";
 			}
 		}
@@ -141,7 +138,7 @@ public class CrudAluno {
 			} else if (hasNumbers(nomeDaMae)) {
 				JOptionPane.showMessageDialog(null, "Digite um nome válido!");
 			} else {
-				JOptionPane.showInternalMessageDialog(null, "Nome da Mãe válido!");
+				JOptionPane.showMessageDialog(null, "Nome da Mãe válido!");
 			}
 		}
 
@@ -149,22 +146,25 @@ public class CrudAluno {
 
 		listaAlunos.add(pessoa);
 		mostrarListaDeAlunos(listaAlunos);
-		pessoa.informacoes();
+		
 
 	
 
 	}
 	
 	public void mostrarListaDeAlunos(ArrayList<Aluno> listaAlunos){
-		StringBuilder dadosAlunos = new StringBuilder("Lista de Alunos:/n");
+		StringBuilder dadosAlunos = new StringBuilder("Lista de Alunos ano de 2023:\n ");
 		
 		for(Aluno pessoa: listaAlunos) {
-			dadosAlunos.append("Id:/n ").append(pessoa.getId()).append("Nome:/n ").append(pessoa.getNome()).append("Idade:n/ ").append(pessoa.getIdade())
-			.append("Matrícula:n/ ").append(pessoa.getMatricula()).append("Turma:n/ ").append(pessoa.getTurma()).append("Nome do Professor:n/ ")
-			.append(pessoa.getNomeProfessor()).append("Turno:n/ ").append(pessoa.getTurno()).append("Nome da Mãe:n/ ").append(pessoa.getNomeDaMae());
+			dadosAlunos.append("Id: ").append(pessoa.getId() + "\n").append("Nome: ").append(pessoa.getNome() + "\n")
+			.append("Idade: ").append(pessoa.getIdade() + "\n")
+			.append("Matrícula: ").append(pessoa.getMatricula() + "\n").append("Turma: 2º").append(pessoa.getTurma() + "\n")
+			.append("Nome do Professor: ")
+			.append(pessoa.getNomeProfessor() + "\n").append("Turno: ").append(pessoa.getTurno() + "\n").append("Nome da Mãe: ")
+			.append(pessoa.getNomeDaMae() + "\n");
 		}
 		
-		JOptionPane.showInternalMessageDialog(null, dadosAlunos.toString());
+		JOptionPane.showMessageDialog(null, dadosAlunos.toString());
 		
 	}
 
