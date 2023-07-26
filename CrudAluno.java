@@ -153,31 +153,41 @@ public class CrudAluno {
 	}
 	
 	public void mostrarListaDeAlunos(ArrayList<Aluno> listaAlunos){
-		StringBuilder dadosAlunos = new StringBuilder("Lista de Alunos ano de 2023:\n ");
+		StringBuilder dadosAluno = new StringBuilder("Cadastro do Aluno ano de 2023:\n ");
 		
-		for(Aluno pessoa: listaAlunos) {
-			dadosAlunos.append("Id: ").append(pessoa.getId() + "\n").append("Nome: ").append(pessoa.getNome() + "\n")
-			.append("Idade: ").append(pessoa.getIdade() + "\n")
-			.append("Matrícula: ").append(pessoa.getMatricula() + "\n").append("Turma: 2º").append(pessoa.getTurma() + "\n")
+		for(Aluno alunoPessoa: listaAlunos) {
+			dadosAluno.append("Id: ").append(alunoPessoa.getId() + "\n").append("Nome: ").append(alunoPessoa.getNome() + "\n")
+			.append("Idade: ").append(alunoPessoa.getIdade() + "\n")
+			.append("Matrícula: ").append(alunoPessoa.getMatricula() + "\n").append("Turma: 2º").append(alunoPessoa.getTurma() + "\n")
 			.append("Nome do Professor: ")
-			.append(pessoa.getNomeProfessor() + "\n").append("Turno: ").append(pessoa.getTurno() + "\n").append("Nome da Mãe: ")
-			.append(pessoa.getNomeDaMae() + "\n");
+			.append(alunoPessoa.getNomeProfessor() + "\n").append("Turno: ").append(alunoPessoa.getTurno() + "\n").append("Nome da Mãe: ")
+			.append(alunoPessoa.getNomeDaMae() + "\n");
 		}
 		
-		JOptionPane.showMessageDialog(null, dadosAlunos.toString());
+		JOptionPane.showMessageDialog(null, dadosAluno.toString());
 		
 	}
 
 	public void readAluno() {
+		
+		StringBuilder dadosAlunos = new StringBuilder("lista dos Alunos Cadastrados:\n ");
+		
 		if (listaAlunos.isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Não há Alunos nesta lista!");
 
 		} else {
+			
+			
 			for (Aluno registroAlunos : listaAlunos) {
-				System.out.println("---------lista---------");
-				System.out.println(registroAlunos);
-				JOptionPane.showMessageDialog(null, "Lista de Alunos: " + "\n" + " - " + registroAlunos.getNome());
-			}
+				dadosAlunos.append("------------Dados------------").append("Id: ").append(registroAlunos.getId() + "\n").append("Nome: ")
+				.append(registroAlunos.getNome() + "\n").append("Idade: ").append(registroAlunos.getIdade() + "\n")
+				.append("Matrícula: ").append(registroAlunos.getMatricula() + "\n").append("Turma: ")
+				.append(registroAlunos.getTurma() + "\n").append("Turno: ").append("Nome do Professor: ")
+				.append(registroAlunos.getNomeProfessor() + "\n").append(registroAlunos.getTurno() + "\n")
+				.append("Nome da Mãe: ").append(registroAlunos.getNomeDaMae() + "\n");
+			}			
+				
+				JOptionPane.showMessageDialog(null, dadosAlunos.toString());
 		}
 	}
 
