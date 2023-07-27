@@ -181,14 +181,16 @@ public class CrudAluno {
 		StringBuilder dadosAluno = new StringBuilder("Cadastro do Aluno ano de 2023:\n ");
 
 		for (Aluno alunoPessoa : listaAlunos) {
-			dadosAluno.append("Id: ").append(alunoPessoa.getId() + "\n").append("Nome: ")
-					.append(alunoPessoa.getNome() + "\n").append("Idade: ").append(alunoPessoa.getIdade() + "\n")
-					.append("Matrícula: ").append(alunoPessoa.getMatricula() + "\n").append("Turma: 2º")
+			dadosAluno.append("------------Dados------------\n").append("Id: ")
+					.append(alunoPessoa.getId() + "\n").append("Nome: ")
+					.append(alunoPessoa.getNome() + "\n").append("Idade: ")
+					.append(alunoPessoa.getIdade() + "\n").append("Matrícula: ")
+					.append(alunoPessoa.getMatricula() + "\n").append("Turma: 2º")
 					.append(alunoPessoa.getTurma() + "\n").append("Nome do Professor: ")
 					.append(alunoPessoa.getNomeProfessor() + "\n").append("Turno: ")
 					.append(alunoPessoa.getTurno() + "\n").append("Nome da Mãe: ")
 					.append(alunoPessoa.getNomeDaMae() + "\n")
-					.append("----------------------||------------------------" + "\n");
+					.append("-----------------------------\n" );
 		}
 
 		JOptionPane.showMessageDialog(null, dadosAluno.toString());
@@ -236,13 +238,15 @@ public class CrudAluno {
 				String nomePesquisado = JOptionPane.showInputDialog("Digite o nome do Aluno(a):\n ");
 				for (Aluno pesquisaAluno : listaAlunos) {
 					if (pesquisaAluno.getNome().equalsIgnoreCase(nomePesquisado)) {
-						dadosAluno.append("Id: ").append(pesquisaAluno.getId() + "\n").append("Nome: ")
-								.append(pesquisaAluno.getNome() + "\n").append("").append("Idade: ")
-								.append(pesquisaAluno.getIdade() + "\n").append("Matrícula: ")
-								.append(pesquisaAluno.getMatricula() + "\n").append("Turma: ")
-								.append(pesquisaAluno.getTurma() + "\n").append("Turno: ").append("Nome do Professor: ")
-								.append(pesquisaAluno.getNomeProfessor() + "\n").append(pesquisaAluno.getTurno() + "\n")
-								.append("Nome da Mãe: ").append(pesquisaAluno.getNomeDaMae() + "\n");
+						dadosAluno.append("------------Dados------------").append("Id: ")
+							.append(pesquisaAluno.getId() + "\n").append("Nome: ")
+							.append(pesquisaAluno.getNome() + "\n").append("Idade: ")
+							.append(pesquisaAluno.getIdade() + "\n").append("Matrícula: ")
+							.append(pesquisaAluno.getMatricula() + "\n").append("Turma: ")
+							.append(pesquisaAluno.getTurma() + "\n").append("Turno: ")
+							.append(pesquisaAluno.getTurno()).append("Nome do Professor: ")
+							.append(pesquisaAluno.getNomeProfessor() + "\n").append("Nome da Mãe: ")
+							.append(pesquisaAluno.getNomeDaMae() + "\n");
 					}
 
 				}
@@ -257,9 +261,10 @@ public class CrudAluno {
 							.append(registroAlunos.getNome() + "\n").append("Idade: ")
 							.append(registroAlunos.getIdade() + "\n").append("Matrícula: ")
 							.append(registroAlunos.getMatricula() + "\n").append("Turma: ")
-							.append(registroAlunos.getTurma() + "\n").append("Turno: ").append("Nome do Professor: ")
-							.append(registroAlunos.getNomeProfessor() + "\n").append(registroAlunos.getTurno() + "\n")
-							.append("Nome da Mãe: ").append(registroAlunos.getNomeDaMae() + "\n");
+							.append(registroAlunos.getTurma() + "\n").append("Turno: ")
+							.append(registroAlunos.getTurno() + ("\n")).append("Nome do Professor: ")
+							.append(registroAlunos.getNomeProfessor() + "\n").append("Nome da Mãe: ")
+							.append(registroAlunos.getNomeDaMae() + "\n");
 				}
 
 				JOptionPane.showMessageDialog(null, dadosAlunos.toString());
@@ -274,83 +279,223 @@ public class CrudAluno {
 
 	public void updateAluno() {
 		
-		String alunoPesquisa = JOptionPane.showInputDialog(null, "Pesquise um aluno para atualizar o cadastro: ");
-
-		int id = 0;
-		
-		while (id == 0) {
-			
-			String identificador = JOptionPane.showInputDialog("Digite o nome Id do aluno: ");
-			
-			try {
-				id = Integer.parseInt(identificador);
-				JOptionPane.showMessageDialog(null, "Id válido!");
 				
-			} catch (NumberFormatException e) {
-				JOptionPane.showMessageDialog(null, " Digite um número válido!");
-		}
-
-	}
-
-		String nome;
+		String alunoPesquisado = JOptionPane.showInputDialog(null, "Pesquise o nome do aluno(a) para atualizar o cadastro: ");
 		
-		nome = JOptionPane.showInputDialog("Digite o nome do aluno: ");
+		StringBuilder infoAluno = new StringBuilder("Informações Aluno(a):\n" + alunoPesquisado );
 		
-		int idade = 0;
-
-		String entradaIdade = JOptionPane.showInputDialog("Digite idade do aluno: ");
+		Aluno alunoParaAtualizar = null;
 		
-		while (idade == 0) {
-			
-			int confirmaIdade = Integer.parseInt(entradaIdade);
-			
-			if (confirmaIdade > 100 || confirmaIdade < 11) {
-				JOptionPane.showMessageDialog(null, 
-						"Idade do Aluno está acima 100 ou abaixo de 11 Digite corretamente", entradaIdade, idade);
+		for(Aluno alunoCadastrado : listaAlunos) {
+			if(alunoCadastrado.getNome().equalsIgnoreCase(alunoPesquisado)) {
+				infoAluno.append("------------Dados------------" + "\n").append("Id: ")
+					.append(alunoCadastrado.getId() + "\n").append("Nome: ")
+					.append(alunoCadastrado.getNome() + "\n").append("Idade: ")
+					.append(alunoCadastrado.getIdade() + "\n").append("Matricula: ")
+					.append(alunoCadastrado.getMatricula() + "\n").append("Turma: ")
+					.append(alunoCadastrado.getTurma() + "\n").append("Turno: ")
+					.append(alunoCadastrado.getTurno() + "\n").append("Nome do Professor: ")
+					.append(alunoCadastrado.getNomeProfessor() + "\n").append("Nome da Mãe: ")
+					.append(alunoCadastrado.getNomeDaMae() + "\n");
 				
-				idade = 0;
-				entradaIdade = JOptionPane.showInputDialog("Digite idade do aluno: ");
+				JOptionPane.showInternalMessageDialog(null, infoAluno.toString());
 				
-			} else if (confirmaIdade < 100 || confirmaIdade >= 11) {
-				idade = confirmaIdade;
-				JOptionPane.showMessageDialog(null, "Idade está ok!");
-				System.out.println("Idade está ok!");
-			}
-		}
-
-		String matriculaAluno = JOptionPane.showInputDialog("Digite a matricula do aluno: ");
-		
-		int matricula = Integer.parseInt(matriculaAluno);
-		
-		String turma = JOptionPane.showInputDialog("Digite a turma do aluno: ");
-		
-		String nomeProfessor = JOptionPane.showInputDialog("Digite o nome do professor do aluno: ");
-		
-		String turno = JOptionPane.showInputDialog("Digite o turno do aluno: ");
-		
-		String nomeDaMae = JOptionPane.showInputDialog("Digite o nome da mãe do aluno: ");
-
-		Aluno atualizarAluno = new Aluno(id, nome, idade, matricula, turma, nomeProfessor, turno, nomeDaMae);
-
-		for (int i = 0; i < listaAlunos.size(); i++) {
-			Aluno aluno = listaAlunos.get(i);
-
-			if (aluno.getNome().equals(alunoPesquisa)) {
-				listaAlunos.set(i, atualizarAluno);
+				alunoParaAtualizar = alunoCadastrado;	
 				break;
-
 			}
 		}
 		
-		for (Aluno aluno : listaAlunos) {
-			System.out.println("-------------------Aluno atualizado -------------------");
-			System.out.println("Id do aluno(a): " + aluno.getId() + "Nome do aluno(a): " + aluno.getNome()
-					+ "Idade do aluno(a): " + aluno.getIdade() + "Matricula do aluno(a): " + aluno.getMatricula()
-					+ "Turma do aluno: " + aluno.getTurma() + "Professor(a) do aluno(a): " + aluno.getNomeProfessor()
-					+ "Turno do aluno(a): " + aluno.getTurno() + "Nome da mãe do aluno(a): " + aluno.getNomeDaMae());
+		if(alunoParaAtualizar != null) {
+			
+			int idNovo = 0;
+			
+			while (idNovo == 0) {
+				
+				String identificador = JOptionPane.showInputDialog("Digite o nome Id do aluno: ");
+				
+				try {
+					idNovo = Integer.parseInt(identificador);
+					JOptionPane.showMessageDialog(null, "Id válido!");
+					
+				} catch (NumberFormatException e) {
+					JOptionPane.showMessageDialog(null, " Digite um número válido!");
+				}
+
+			}
+
+			String nomeNovo = "";
+			
+			while (nomeNovo.isBlank() || hasNumbers(nomeNovo)) {
+				
+				nomeNovo = JOptionPane.showInputDialog("Digite o nome do aluno: ");
+
+				if (nomeNovo.isBlank()) {
+					JOptionPane.showMessageDialog(null, " Digite um nome válido!");
+					
+				} else if (hasNumbers(nomeNovo)) {
+					JOptionPane.showMessageDialog(null, " Digite um nome sem números!");
+
+				} else {
+					JOptionPane.showMessageDialog(null, "Nome válido!");
+
+				}
+			}
+
+			int idadeNova = 0;
+			
+			while (idadeNova == 0 || idadeNova > 100) {
+				
+				String entradaIdade = JOptionPane.showInputDialog("Digite idade do aluno: ");
+
+				try {
+					int confirmaIdade = Integer.parseInt(entradaIdade);
+					
+					if (confirmaIdade > 100 || confirmaIdade < 11) {
+						JOptionPane.showMessageDialog(null,
+								"Idade do Aluno está acima 100 ou abaixo de 11 Digite corretamente");
+						idadeNova = 0;
+
+					} else if (confirmaIdade < 100 || confirmaIdade >= 11) {
+						idadeNova = confirmaIdade;
+						JOptionPane.showMessageDialog(null, "Idade válida!");
+
+					}
+					
+				} catch (NumberFormatException e) {
+					JOptionPane.showMessageDialog(null, "Digite uma idade válida");
+				}
+			}
+
+			String matriculaAlunoNova = "";
+			
+			int matriculaNova = 0;
+			
+			int digitos = 5;
+			
+			String avancar = "";
+			
+			while (matriculaAlunoNova.isBlank() || avancar.equals("")) {
+
+				do {
+					matriculaAlunoNova = JOptionPane
+							.showInputDialog("Insira a matricula do aluno de no mínimo " + digitos + " digitos: ");
+
+				} while (matriculaAlunoNova.length() != digitos);
+
+				try {
+					matriculaNova = Integer.parseInt(matriculaAlunoNova);
+					
+					if (matriculaNova == 0) {
+						avancar = "";
+						JOptionPane.showMessageDialog(null, "Digite a matricula diferente de " + matriculaNova);
+						
+					} else {
+						JOptionPane.showMessageDialog(null, "Matrícula válida!");
+						avancar = "avançar";
+					}
+
+				} catch (NumberFormatException e) {
+					JOptionPane.showMessageDialog(null, "Digite uma matrícula válida!");
+					avancar = "";
+				}
+
+			}
+
+			String turmaNova = "";
+			
+			String nomeProfessorNovo = "";
+			
+			while (turmaNova.isBlank()) {
+
+				turmaNova = JOptionPane.showInputDialog("Digite A ou B para indicar a turma do aluno: ");
+
+				if (turmaNova.equalsIgnoreCase("A")) {
+					nomeProfessorNovo = "Sandro";
+					
+				} else if (turmaNova.equalsIgnoreCase("B")) {
+					nomeProfessorNovo = "Douglas";
+					
+				} else {
+					JOptionPane.showMessageDialog(null, "Digite uma turma válida!");
+					turmaNova = "";
+
+				}
+
+			}
+
+			String turnoNovo = "";
+			
+			while (turnoNovo.isBlank()) {
+
+				turnoNovo = JOptionPane.showInputDialog("Digite o turno do aluno: ");
+
+				if (turnoNovo.equalsIgnoreCase("Matutino")) {
+					JOptionPane.showMessageDialog(null, "Turno válido!");
+					
+				} else if (turnoNovo.equalsIgnoreCase("Vespertino")) {
+					JOptionPane.showMessageDialog(null, "Turno válido!");
+					
+				} else {
+					JOptionPane.showMessageDialog(null, "Turno inválido!");
+					turnoNovo = "";
+				}
+				
+			}
+
+			String nomeDaMaeNovo = "";
+			
+			while (nomeDaMaeNovo.isBlank()) {
+
+				nomeDaMaeNovo = JOptionPane.showInputDialog("Digite o nome da mãe do aluno: ");
+
+				if (nomeDaMaeNovo.isBlank()) {
+					JOptionPane.showMessageDialog(null, "Digite um nome!");
+					
+				} else if (hasNumbers(nomeDaMaeNovo)) {
+					JOptionPane.showMessageDialog(null, "Digite um nome válido!");
+					
+				} else {
+					JOptionPane.showMessageDialog(null, "Nome da Mãe válido!");
+					
+				}
+				
+				alunoParaAtualizar.setId(idNovo);
+				alunoParaAtualizar.setNome(nomeNovo);
+				alunoParaAtualizar.setIdade(idadeNova);
+				alunoParaAtualizar.setMatricula(matriculaNova);
+				alunoParaAtualizar.setTurma(turmaNova);
+				alunoParaAtualizar.setTurno(turnoNovo);
+				alunoParaAtualizar.setNomeProfessor(nomeProfessorNovo);
+				alunoParaAtualizar.setNomeDaMae(nomeDaMaeNovo);
+				
+			}
+				
+			StringBuilder alunoNovo = new StringBuilder("Informações atualizadas do \n Aluno(a):\n" + alunoPesquisado + "\n");
+		
+		for(Aluno alunoAtual : listaAlunos) {
+			alunoNovo.append(("------------Dados------------\n")).append("Id: ")
+			.append(alunoAtual.getId() + "\n").append("Nome: ")
+			.append(alunoAtual.getNome() + "\n").append("Idade: ")
+			.append(alunoAtual.getIdade() + "\n").append("Matricula: ")
+			.append(alunoAtual.getMatricula() + "\n").append("Turma: ")
+			.append(alunoAtual.getTurma() + "\n").append("Turno: ")
+			.append(alunoAtual.getTurno() + "\n").append("Nome do Professor: ")
+			.append(alunoAtual.getNomeProfessor() + "\n").append("Nome da Mãe: ")
+			.append(alunoAtual.getNomeDaMae() + "\n");;
 		}
 
-	}
+		JOptionPane.showMessageDialog(null, "Cadastro ANTIGO " + "\n" + infoAluno.toString() 
+		+ "\n" + "Cadastro NOVO " + "\n"  + alunoNovo.toString());
+		
+
+		} else {
+			
+			JOptionPane.showMessageDialog(null, "Aluno(a) " + alunoPesquisado + " NÃO está Cadastrado! \n" + 
+			"Verifique a lista de Alunos!");
+			
+		}
+}
+
 
 	public void deleteAluno() {
 
