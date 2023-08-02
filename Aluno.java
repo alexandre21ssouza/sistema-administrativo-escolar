@@ -7,6 +7,7 @@ public class Aluno {
 	// atributos
 	private int id;
 	private String nome;
+	private String sobreNome;
 	private int idade;
 	private int matricula;
 	private String turma;
@@ -16,11 +17,12 @@ public class Aluno {
 
 	
 	
-	public Aluno(int id, String nome, int idade, int matricula, String turma, String nomeProfessor, String turno,
+	public Aluno(int id, String nome, String sobreNome, int idade, int matricula, String turma, String nomeProfessor, String turno,
 			String nomeDaMae) {
 		
 		this.id = id;
 		this.nome = nome;
+		this.sobreNome = sobreNome;
 		this.idade = idade;
 		this.matricula = matricula;
 		this.turma = turma;
@@ -38,6 +40,10 @@ public class Aluno {
 	
 	public String getNome() {
 		return nome;
+	}
+	
+	public String getSobreNome() {
+		return sobreNome;
 	}
 
 	
@@ -78,6 +84,11 @@ public class Aluno {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+
+	public void setSobreNome(String sobreNome) {
+		this.sobreNome = sobreNome;
 	}
 
 	public void setIdade(int idade) {
