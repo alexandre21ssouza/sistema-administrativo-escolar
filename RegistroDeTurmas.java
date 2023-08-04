@@ -12,7 +12,7 @@ public class RegistroDeTurmas {
 
 		CrudAluno aluno = new CrudAluno();
 
-		JOptionPane.showMessageDialog(null, "Olá, Seja muito bem vindo ao Sistema de alunos!");
+		JOptionPane.showMessageDialog(null, "Olá, Seja muito bem vindo ao Sistema Escolar!");
 
 		String opcaoDeAcao = "Iniciar";
 
@@ -23,10 +23,14 @@ public class RegistroDeTurmas {
 			while (true) {
 
 				try {
-					opcaoDeAcao = JOptionPane.showInputDialog(null,
-									"Digite a opção desejada: \n" + "1-Cadastrar novo Aluno(a).\n"
-									+ "2-Visualizar Alunos cadastados.\n" + "3-Atualizar cadastro de Aluno(a).\n"
-									+ "4-Deletar Aluno cadastrado.\n" + "0-Sair do Programa.");
+					opcaoDeAcao = JOptionPane.showInputDialog(null, "MENU DE OPERAÇÕES\n" + "\n" +
+									"Digite a opção desejada: \n" + "\n" 
+									+ "1-Cadastrar novo Aluno(a).\n"
+									+ "2-Visualizar Alunos cadastados.\n" 
+									+ "3-Atualizar cadastro de Aluno(a).\n"
+									+ "4-Deletar Aluno cadastrado.\n" 
+									+ "0-Sair do Programa.");
+					
 					numeroDeAcao = Integer.parseInt(opcaoDeAcao);
 
 					if (numeroDeAcao > 4 || numeroDeAcao < 0) {
@@ -45,17 +49,53 @@ public class RegistroDeTurmas {
 
 			switch (numeroDeAcao) {
 			case 1:
-				aluno.createAluno();
+				String confirmaCreate = JOptionPane.showInputDialog("Deseja realmente continuar? \nS ou N");
+				
+				if(confirmaCreate.equalsIgnoreCase("S") ) {
+					aluno.createAluno();
+				
+				} else {
+					JOptionPane.showMessageDialog(null, "Voltando ao MENU...");
+					}
+				
 				break;
+				
 			case 2:
+				String confirmaRead = JOptionPane.showInputDialog("Deseja realmente continuar? \nS ou N");
+				
+				if(confirmaRead.equalsIgnoreCase("S") ) {
 				aluno.readAluno();
+				
+				} else {
+					JOptionPane.showMessageDialog(null, "Voltando ao MENU...");
+					}
+				
 				break;
+				
 			case 3:
+				String confirmaUpdate = JOptionPane.showInputDialog("Deseja realmente continuar? \nS ou N");
+				
+				if(confirmaUpdate.equalsIgnoreCase("S") ) {			
 				aluno.updateAluno();
+				
+				} else {
+				JOptionPane.showMessageDialog(null, "Voltando ao MENU...");
+					}
+			
 				break;
+				
 			case 4:
+				String confirmaDelete = JOptionPane.showInputDialog("Deseja realmente continuar? \nS ou N");
+				
+				if(confirmaDelete.equalsIgnoreCase("S") ) {
 				aluno.deleteAluno();
+				
+				} else {
+					JOptionPane.showMessageDialog(null, "Voltando ao MENU...");
+						}
+				
 				break;
+				
 			case 0:
 				JOptionPane.showMessageDialog(null, "Operação Finalizada!");
 				break;

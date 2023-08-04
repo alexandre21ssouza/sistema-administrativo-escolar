@@ -18,7 +18,7 @@ public class CrudAluno {
 
 		while (id == 0) {
 
-			String identificador = JOptionPane.showInputDialog("Digite o nome Id do aluno: ");
+			String identificador = JOptionPane.showInputDialog("Digite o número Id do Aluno(a): ");
 
 			try {
 				id = Integer.parseInt(identificador);
@@ -32,17 +32,17 @@ public class CrudAluno {
 
 		String nome = "";
 
-		while (nome.isBlank() || hasNumbers(nome)) {
-			nome = JOptionPane.showInputDialog("Digite o nome do aluno: ");
+		while (nome.isBlank() || temNummeros(nome)) {
+			nome = JOptionPane.showInputDialog("Digite o nome do Aluno(a): ");
 			int nomeMinimo = 6;
 			
 			if(nome.length() >= nomeMinimo ) {
 
 			if (nome.isBlank()) {
-				JOptionPane.showMessageDialog(null, " Digite um nome válido!");
+				JOptionPane.showMessageDialog(null, " Digite um Nome válido!");
 
-			} else if (hasNumbers(nome)) {
-				JOptionPane.showMessageDialog(null, " Digite um nome sem números!");
+			} else if (temNummeros(nome)) {
+				JOptionPane.showMessageDialog(null, " Digite um Nome sem números!");
 
 			} else {
 				JOptionPane.showMessageDialog(null, "Nome válido!");
@@ -50,21 +50,21 @@ public class CrudAluno {
 			}
 			
 			} else { 
-				JOptionPane.showMessageDialog(null, "Digite um nome com no mínimo 6 letras!!");
+				JOptionPane.showMessageDialog(null, "Digite um Nome com no mínimo 6 caracteres!!");
 				nome = "";
 			}
 		}
 
 		String sobreNome = "";
 
-		while (sobreNome.isBlank() || hasNumbers(sobreNome)) {
+		while (sobreNome.isBlank() || temNummeros(sobreNome)) {
 
-			sobreNome = JOptionPane.showInputDialog("Digite o Sobre Nome: ");
+			sobreNome = JOptionPane.showInputDialog("Digite o Sobrenome: ");
 
 			if (sobreNome.isBlank()) {
 				JOptionPane.showMessageDialog(null, "Digite um Sobrenome válido!");
 
-			} else if (hasNumbers(sobreNome)) {
+			} else if (temNummeros(sobreNome)) {
 				JOptionPane.showMessageDialog(null, "Digite um Sobrenome sem números!");
 			} else {
 				JOptionPane.showMessageDialog(null, "Sobrenome Válido!");
@@ -75,20 +75,20 @@ public class CrudAluno {
 
 	int idade = 0;
 
-	while(idade==0||idade>100)
+	while(idade==0 || idade > 23)
 	{
 
-		String entradaIdade = JOptionPane.showInputDialog("Digite idade do aluno: ");
+		String entradaIdade = JOptionPane.showInputDialog("Digite a idade do Aluno(a): ");
 
 		try {
 			int confirmaIdade = Integer.parseInt(entradaIdade);
 
-			if (confirmaIdade > 100 || confirmaIdade < 11) {
-				JOptionPane.showMessageDialog(null, "Idade do Aluno está acima 100 ou abaixo de 11 Digite corretamente",
+			if (confirmaIdade > 23 || confirmaIdade < 11) {
+				JOptionPane.showMessageDialog(null, "Idade do Aluno(a) está acima 23 ou abaixo de 11 Digite corretamente",
 						entradaIdade, idade);
 				idade = 0;
 
-			} else if (confirmaIdade < 100 || confirmaIdade >= 11) {
+			} else if (confirmaIdade < 23 || confirmaIdade >= 11) {
 				idade = confirmaIdade;
 				JOptionPane.showMessageDialog(null, "Idade válida!");
 
@@ -142,7 +142,7 @@ public class CrudAluno {
 	while(turma.isBlank())
 	{
 
-		turma = JOptionPane.showInputDialog("Digite A ou B para indicar a turma do aluno: ");
+		turma = JOptionPane.showInputDialog("Digite A ou B para indicar a turma do Aluno(a): ");
 
 		if (turma.equalsIgnoreCase("A")) {
 			nomeProfessor = "Sandro";
@@ -163,7 +163,7 @@ public class CrudAluno {
 	while(turno.isBlank())
 	{
 
-		turno = JOptionPane.showInputDialog("Digite o turno do aluno: ");
+		turno = JOptionPane.showInputDialog("Digite o turno do Aluno(a), Vespertino ou Matutino: ");
 
 		if (turno.equalsIgnoreCase("Matutino")) {
 			JOptionPane.showMessageDialog(null, "Turno válido!");
@@ -183,13 +183,13 @@ public class CrudAluno {
 	while(nomeDaMae.isBlank())
 	{
 
-		nomeDaMae = JOptionPane.showInputDialog("Digite o nome da mãe do aluno: ");
+		nomeDaMae = JOptionPane.showInputDialog("Digite o Nome completo da Mãe do Aluno(a): ");
 
 		if (nomeDaMae.isBlank()) {
-			JOptionPane.showMessageDialog(null, "Digite um nome!");
+			JOptionPane.showMessageDialog(null, "Digite um Nome!");
 
-		} else if (hasNumbers(nomeDaMae)) {
-			JOptionPane.showMessageDialog(null, "Digite um nome válido!");
+		} else if (temNummeros(nomeDaMae)) {
+			JOptionPane.showMessageDialog(null, "Digite um Nome válido!");
 
 		} else {
 			JOptionPane.showMessageDialog(null, "Nome da Mãe válido!");
@@ -208,16 +208,20 @@ public class CrudAluno {
 
 	public void mostrarListaDeAlunos(ArrayList<Aluno> listaAlunos) {
 
-		StringBuilder dadosAluno = new StringBuilder("Cadastro do Aluno ano de 2023:\n ");
+		StringBuilder dadosAluno = new StringBuilder("Cadastro do Aluno(a) ano de 2023:\n ");
 
 		for (Aluno alunoPessoa : listaAlunos) {
-			dadosAluno.append("------------Dados------------\n").append("Id: ").append(alunoPessoa.getId() + "\n")
-					.append("Nome: ").append(alunoPessoa.getNome() + "\n").append("Idade: ")
-					.append(alunoPessoa.getIdade() + "\n").append("Matrícula: ")
-					.append(alunoPessoa.getMatricula() + "\n").append("Turma: 2º").append(alunoPessoa.getTurma() + "\n")
-					.append("Nome do Professor: ").append(alunoPessoa.getNomeProfessor() + "\n").append("Turno: ")
-					.append(alunoPessoa.getTurno() + "\n").append("Nome da Mãe: ")
-					.append(alunoPessoa.getNomeDaMae() + "\n").append("-----------------------------\n");
+			dadosAluno.append("------------Dados------------\n")
+					.append("Id: ").append(alunoPessoa.getId() + "\n")
+					.append("Nome: ").append(alunoPessoa.getNome() + "\n")
+					.append("Sobrenome: ").append(alunoPessoa.getSobreNome() + "\n")
+					.append("Idade: ").append(alunoPessoa.getIdade() + "\n")
+					.append("Matrícula: ").append(alunoPessoa.getMatricula() + "\n")
+					.append("Turma: 2º").append(alunoPessoa.getTurma() + "\n")
+					.append("Nome do Professor: ").append(alunoPessoa.getNomeProfessor() + "\n")
+					.append("Turno: ").append(alunoPessoa.getTurno() + "\n")
+					.append("Nome da Mãe: ").append(alunoPessoa.getNomeDaMae() + "\n")
+					.append("-----------------------------\n");
 		}
 
 		JOptionPane.showMessageDialog(null, dadosAluno.toString());
@@ -241,7 +245,7 @@ public class CrudAluno {
 			while (true) {
 
 				try {
-					String qualAFormaDePesquisa = JOptionPane.showInputDialog("1-Pesquisar por nome do Aluno.\n"
+					String qualAFormaDePesquisa = JOptionPane.showInputDialog("1-Pesquisar por Nome do Aluno(a).\n"
 							+ "2-Mostrar todos os Alunos.\n" + "0-Encerrar pesquisa.");
 
 					escolhaFeita = Integer.parseInt(qualAFormaDePesquisa);
@@ -262,18 +266,20 @@ public class CrudAluno {
 
 			switch (escolhaFeita) {
 			case 1:
-				String nomePesquisado = JOptionPane.showInputDialog("Digite o nome do Aluno(a):\n ");
+				String nomePesquisado = JOptionPane.showInputDialog("Digite o Nome do Aluno(a):\n ");
 				for (Aluno pesquisaAluno : listaAlunos) {
 					if (pesquisaAluno.getNome().equalsIgnoreCase(nomePesquisado)) {
-						dadosAluno.append("------------Dados------------").append("Id: ")
-								.append(pesquisaAluno.getId() + "\n").append("Nome: ")
-								.append(pesquisaAluno.getNome() + "\n").append("Idade: ")
-								.append(pesquisaAluno.getIdade() + "\n").append("Matrícula: ")
-								.append(pesquisaAluno.getMatricula() + "\n").append("Turma: ")
-								.append(pesquisaAluno.getTurma() + "\n").append("Turno: ")
-								.append(pesquisaAluno.getTurno()).append("Nome do Professor: ")
-								.append(pesquisaAluno.getNomeProfessor() + "\n").append("Nome da Mãe: ")
-								.append(pesquisaAluno.getNomeDaMae() + "\n");
+						  dadosAluno.append("------------Dados------------\n")
+									.append("Id: ").append(pesquisaAluno.getId() + "\n")
+									.append("Nome: ").append(pesquisaAluno.getNome() + "\n")
+									.append("Sobrenome: ").append(pesquisaAluno.getSobreNome() + "\n")
+									.append("Idade: ").append(pesquisaAluno.getIdade() + "\n")
+									.append("Matrícula: ").append(pesquisaAluno.getMatricula() + "\n")
+									.append("Turma: 2º").append(pesquisaAluno.getTurma() + "\n")
+									.append("Nome do Professor: ").append(pesquisaAluno.getNomeProfessor() + "\n")
+									.append("Turno: ").append(pesquisaAluno.getTurno() + "\n")
+									.append("Nome da Mãe: ").append(pesquisaAluno.getNomeDaMae() + "\n")
+									.append("-----------------------------\n");
 					}
 
 				}
@@ -283,15 +289,17 @@ public class CrudAluno {
 
 			case 2:
 				for (Aluno registroAlunos : listaAlunos) {
-					dadosAlunos.append("------------Dados------------").append("Id: ")
-							.append(registroAlunos.getId() + "\n").append("Nome: ")
-							.append(registroAlunos.getNome() + "\n").append("Idade: ")
-							.append(registroAlunos.getIdade() + "\n").append("Matrícula: ")
-							.append(registroAlunos.getMatricula() + "\n").append("Turma: ")
-							.append(registroAlunos.getTurma() + "\n").append("Turno: ")
-							.append(registroAlunos.getTurno() + ("\n")).append("Nome do Professor: ")
-							.append(registroAlunos.getNomeProfessor() + "\n").append("Nome da Mãe: ")
-							.append(registroAlunos.getNomeDaMae() + "\n");
+						dadosAlunos.append("------------Dados------------\n")
+									.append("Id: ").append(registroAlunos.getId() + "\n")
+									.append("Nome: ").append(registroAlunos.getNome() + "\n")
+									.append("Sobrenome: ").append(registroAlunos.getSobreNome() + "\n")
+									.append("Idade: ").append(registroAlunos.getIdade() + "\n")
+									.append("Matrícula: ").append(registroAlunos.getMatricula() + "\n")
+									.append("Turma: 2º").append(registroAlunos.getTurma() + "\n")
+									.append("Nome do Professor: ").append(registroAlunos.getNomeProfessor() + "\n")
+									.append("Turno: ").append(registroAlunos.getTurno() + "\n")
+									.append("Nome da Mãe: ").append(registroAlunos.getNomeDaMae() + "\n")
+									.append("-----------------------------\n");
 				}
 
 				JOptionPane.showMessageDialog(null, dadosAlunos.toString());
@@ -312,23 +320,25 @@ public class CrudAluno {
 		} else {
 
 			String alunoPesquisado = JOptionPane.showInputDialog(null,
-					"Pesquise o nome do aluno(a) para atualizar o cadastro: ");
+					"Pesquise o nome do aluno(a) para atualizar o cadastro: \n");
 
-			StringBuilder infoAluno = new StringBuilder("Informações Aluno(a):\n" + alunoPesquisado);
+			StringBuilder infoAluno = new StringBuilder("Informações do Aluno(a):\n" + alunoPesquisado + "\n");
 
 			Aluno alunoParaAtualizar = null;
 
 			for (Aluno alunoCadastrado : listaAlunos) {
 				if (alunoCadastrado.getNome().equalsIgnoreCase(alunoPesquisado)) {
-					infoAluno.append("------------Dados------------" + "\n").append("Id: ")
-							.append(alunoCadastrado.getId() + "\n").append("Nome: ")
-							.append(alunoCadastrado.getNome() + "\n").append("Idade: ")
-							.append(alunoCadastrado.getIdade() + "\n").append("Matricula: ")
-							.append(alunoCadastrado.getMatricula() + "\n").append("Turma: ")
-							.append(alunoCadastrado.getTurma() + "\n").append("Turno: ")
-							.append(alunoCadastrado.getTurno() + "\n").append("Nome do Professor: ")
-							.append(alunoCadastrado.getNomeProfessor() + "\n").append("Nome da Mãe: ")
-							.append(alunoCadastrado.getNomeDaMae() + "\n");
+						   infoAluno.append("------------Dados------------\n")
+									.append("Id: ").append(alunoCadastrado.getId() + "\n")
+									.append("Nome: ").append(alunoCadastrado.getNome() + "\n")
+									.append("Sobrenome: ").append(alunoCadastrado.getSobreNome() + "\n")
+									.append("Idade: ").append(alunoCadastrado.getIdade() + "\n")
+									.append("Matrícula: ").append(alunoCadastrado.getMatricula() + "\n")
+									.append("Turma: 2º").append(alunoCadastrado.getTurma() + "\n")
+									.append("Nome do Professor: ").append(alunoCadastrado.getNomeProfessor() + "\n")
+									.append("Turno: ").append(alunoCadastrado.getTurno() + "\n")
+									.append("Nome da Mãe: ").append(alunoCadastrado.getNomeDaMae() + "\n")
+									.append("-----------------------------\n");
 
 					JOptionPane.showMessageDialog(null, infoAluno.toString());
 
@@ -343,7 +353,7 @@ public class CrudAluno {
 
 				while (idNovo == 0) {
 
-					String identificador = JOptionPane.showInputDialog("Digite o nome Id do aluno: ");
+					String identificador = JOptionPane.showInputDialog("Digite o Número Id do Aluno(a): ");
 
 					try {
 						idNovo = Integer.parseInt(identificador);
@@ -356,38 +366,74 @@ public class CrudAluno {
 				}
 
 				String nomeNovo = "";
+				int nomeNovoMinimo = 6;
 
-				while (nomeNovo.isBlank() || hasNumbers(nomeNovo)) {
+				while (nomeNovo.isBlank() || temNummeros(nomeNovo)) {
 
-					nomeNovo = JOptionPane.showInputDialog("Digite o nome do aluno: ");
+					nomeNovo = JOptionPane.showInputDialog("Digite o Nome do Aluno(a): ");
+					
+					if(nomeNovo.length() >= nomeNovoMinimo) {
 
 					if (nomeNovo.isBlank()) {
-						JOptionPane.showMessageDialog(null, " Digite um nome válido!");
+						JOptionPane.showMessageDialog(null, " Digite um Nome válido!");
 
-					} else if (hasNumbers(nomeNovo)) {
-						JOptionPane.showMessageDialog(null, " Digite um nome sem números!");
+					} else if (temNummeros(nomeNovo)) {
+						JOptionPane.showMessageDialog(null, " Digite um Nome sem números!");
 
 					} else {
 						JOptionPane.showMessageDialog(null, "Nome válido!");
 
 					}
+					} else {
+						JOptionPane.showMessageDialog(null, "Digite um Nome com no mínimo 6 caracteres!!");
+						nomeNovo = "";
+						
+					}
+				}
+				
+				
+				String sobreNomeNovo = "";
+				int sobreNomeNovoMinimo = 6;
+
+				while (sobreNomeNovo.isBlank() || temNummeros(sobreNomeNovo)) {
+
+					sobreNomeNovo = JOptionPane.showInputDialog("Digite o Sobrenome do Aluno(a): ");
+					
+					if(sobreNomeNovo.length() >= sobreNomeNovoMinimo) {
+
+					if (sobreNomeNovo.isBlank()) {
+						JOptionPane.showMessageDialog(null, " Digite um Nome válido!");
+
+					} else if (temNummeros(sobreNomeNovo)) {
+						JOptionPane.showMessageDialog(null, " Digite um Nome sem números!");
+
+					} else {
+						JOptionPane.showMessageDialog(null, "Nome válido!");
+
+					}
+					} else {
+						JOptionPane.showMessageDialog(null, "Digite um Nome com no mínimo 6 caracteres!!");
+						sobreNomeNovo = "";
+						
+					}
 				}
 
+				
 				int idadeNova = 0;
 
-				while (idadeNova == 0 || idadeNova > 100) {
+				while (idadeNova == 0 || idadeNova > 23) {
 
-					String entradaIdade = JOptionPane.showInputDialog("Digite idade do aluno: ");
+					String entradaIdade = JOptionPane.showInputDialog("Digite a idade do Aluno(a): ");
 
 					try {
 						int confirmaIdade = Integer.parseInt(entradaIdade);
 
-						if (confirmaIdade > 100 || confirmaIdade < 11) {
+						if (confirmaIdade > 23 || confirmaIdade < 11) {
 							JOptionPane.showMessageDialog(null,
-									"Idade do Aluno está acima 100 ou abaixo de 11 Digite corretamente");
+									"Idade do Aluno está acima 23 ou abaixo de 11 Digite corretamente");
 							idadeNova = 0;
 
-						} else if (confirmaIdade < 100 || confirmaIdade >= 11) {
+						} else if (confirmaIdade < 23 || confirmaIdade >= 11) {
 							idadeNova = confirmaIdade;
 							JOptionPane.showMessageDialog(null, "Idade válida!");
 
@@ -410,7 +456,7 @@ public class CrudAluno {
 
 					do {
 						matriculaAlunoNova = JOptionPane
-								.showInputDialog("Insira a matricula do aluno de no mínimo " + digitos + " digitos: ");
+								.showInputDialog("Insira a matricula do Aluno(a) de no mínimo " + digitos + " digitos: ");
 
 					} while (matriculaAlunoNova.length() != digitos);
 
@@ -439,7 +485,7 @@ public class CrudAluno {
 
 				while (turmaNova.isBlank()) {
 
-					turmaNova = JOptionPane.showInputDialog("Digite A ou B para indicar a turma do aluno: ");
+					turmaNova = JOptionPane.showInputDialog("Digite A ou B para indicar a turma do Aluno(a): ");
 
 					if (turmaNova.equalsIgnoreCase("A")) {
 						nomeProfessorNovo = "Sandro";
@@ -459,7 +505,7 @@ public class CrudAluno {
 
 				while (turnoNovo.isBlank()) {
 
-					turnoNovo = JOptionPane.showInputDialog("Digite o turno do aluno: ");
+					turnoNovo = JOptionPane.showInputDialog("Digite o turno do Aluno(a), Matutino ou Vesopertino: ");
 
 					if (turnoNovo.equalsIgnoreCase("Matutino")) {
 						JOptionPane.showMessageDialog(null, "Turno válido!");
@@ -475,24 +521,30 @@ public class CrudAluno {
 				}
 
 				String nomeDaMaeNovo = "";
+				int nomeDaMaeNovoMinimo = 6;
 
 				while (nomeDaMaeNovo.isBlank()) {
 
-					nomeDaMaeNovo = JOptionPane.showInputDialog("Digite o nome da mãe do aluno: ");
-
+					nomeDaMaeNovo = JOptionPane.showInputDialog("Digite o Nome completo da Mãe do Aluno(a): ");
+					
+					if(nomeDaMaeNovo.length() >= nomeDaMaeNovoMinimo) {
 					if (nomeDaMaeNovo.isBlank()) {
-						JOptionPane.showMessageDialog(null, "Digite um nome!");
+						JOptionPane.showMessageDialog(null, "Digite um Nome!");
 
-					} else if (hasNumbers(nomeDaMaeNovo)) {
-						JOptionPane.showMessageDialog(null, "Digite um nome válido!");
+					} else if (temNummeros(nomeDaMaeNovo)) {
+						JOptionPane.showMessageDialog(null, "Digite um Nome válido!");
 
 					} else {
 						JOptionPane.showMessageDialog(null, "Nome da Mãe válido!");
 
 					}
+					} else {
+						JOptionPane.showMessageDialog(null, "Digite um Nome com no mínimo 6 caracteres!!");
+					}
 
 					alunoParaAtualizar.setId(idNovo);
 					alunoParaAtualizar.setNome(nomeNovo);
+					alunoParaAtualizar.setSobreNome(sobreNomeNovo);
 					alunoParaAtualizar.setIdade(idadeNova);
 					alunoParaAtualizar.setMatricula(matriculaNova);
 					alunoParaAtualizar.setTurma(turmaNova);
@@ -506,13 +558,17 @@ public class CrudAluno {
 						"Informações atualizadas do \n Aluno(a):\n" + alunoPesquisado + "\n");
 
 				for (Aluno alunoAtual : listaAlunos) {
-					alunoNovo.append("------------Dados------------\n").append("Id: ").append(alunoAtual.getId() + "\n")
-							.append("Nome: ").append(alunoAtual.getNome() + "\n").append("Idade: ")
-							.append(alunoAtual.getIdade() + "\n").append("Matricula: ")
-							.append(alunoAtual.getMatricula() + "\n").append("Turma: ")
-							.append(alunoAtual.getTurma() + "\n").append("Turno: ").append(alunoAtual.getTurno() + "\n")
-							.append("Nome do Professor: ").append(alunoAtual.getNomeProfessor() + "\n")
-							.append("Nome da Mãe: ").append(alunoAtual.getNomeDaMae() + "\n");
+						alunoNovo.append("------------Dados------------\n")
+								  .append("Id: ").append(alunoAtual.getId() + "\n")
+								  .append("Nome: ").append(alunoAtual.getNome() + "\n")
+								  .append("Sobrenome: ").append(alunoAtual.getSobreNome() + "\n")
+								  .append("Idade: ").append(alunoAtual.getIdade() + "\n")
+								  .append("Matrícula: ").append(alunoAtual.getMatricula() + "\n")
+								  .append("Turma: 2º").append(alunoAtual.getTurma() + "\n")
+								  .append("Nome do Professor: ").append(alunoAtual.getNomeProfessor() + "\n")
+								  .append("Turno: ").append(alunoAtual.getTurno() + "\n")
+								  .append("Nome da Mãe: ").append(alunoAtual.getNomeDaMae() + "\n")
+								  .append("-----------------------------\n");
 				}
 
 				JOptionPane.showMessageDialog(null, "Cadastro ANTIGO " + "\n" + infoAluno.toString() + "\n"
@@ -541,14 +597,14 @@ public class CrudAluno {
 
 		} else {
 
-			while (pesquisaDeletar.isBlank() || hasNumbers(pesquisaDeletar)) {
+			while (pesquisaDeletar.isBlank() || temNummeros(pesquisaDeletar)) {
 
-				pesquisaDeletar = JOptionPane.showInputDialog(null, "Digite o nome do Aluno a ser deletado:\n");
+				pesquisaDeletar = JOptionPane.showInputDialog(null, "Digite o nome do Aluno(a) a ser deletado:\n");
 
 				if (pesquisaDeletar.isBlank()) {
 					JOptionPane.showMessageDialog(null, "Digite um Nome!");
 
-				} else if (hasNumbers(pesquisaDeletar)) {
+				} else if (temNummeros(pesquisaDeletar)) {
 
 					JOptionPane.showMessageDialog(null, "Digite um Nome sem números!");
 
@@ -557,24 +613,28 @@ public class CrudAluno {
 					JOptionPane.showMessageDialog(null, "Nome válido!");
 				}
 			}
-		}
 
 		Aluno alunoParaDeletar = null;
 
 		for (Aluno deletaAluno : listaAlunos) {
 			if (deletaAluno.getNome().equalsIgnoreCase(pesquisaDeletar)) {
-				alunoAdeletar.append("------------Dados------------\n").append("Id: ")
-						.append(deletaAluno.getId() + "\n").append("Nome: ").append(deletaAluno.getNome() + "\n")
-						.append("Idade: ").append(deletaAluno.getIdade() + "\n").append("Matricula: ")
-						.append(deletaAluno.getMatricula() + "\n").append("Turma: ")
-						.append(deletaAluno.getTurma() + "\n").append("Turno: ").append(deletaAluno.getTurno() + "\n")
-						.append("Nome do Professor: ").append(deletaAluno.getNomeProfessor() + "\n")
-						.append("Nome da Mãe: ").append(deletaAluno.getNomeDaMae() + "\n");
+					alunoAdeletar.append("------------Dados------------\n")
+								  .append("Id: ").append(deletaAluno.getId() + "\n")
+								  .append("Nome: ").append(deletaAluno.getNome() + "\n")
+								  .append("Sobrenome: ").append(deletaAluno.getSobreNome() + "\n")
+								  .append("Idade: ").append(deletaAluno.getIdade() + "\n")
+								  .append("Matrícula: ").append(deletaAluno.getMatricula() + "\n")
+								  .append("Turma: 2º").append(deletaAluno.getTurma() + "\n")
+								  .append("Nome do Professor: ").append(deletaAluno.getNomeProfessor() + "\n")
+								  .append("Turno: ").append(deletaAluno.getTurno() + "\n")
+								  .append("Nome da Mãe: ").append(deletaAluno.getNomeDaMae() + "\n")
+								  .append("-----------------------------\n");
 
 				JOptionPane.showMessageDialog(null, alunoAdeletar.toString());
 
 				alunoParaDeletar = deletaAluno;
 				break;
+			}
 			}
 
 			if (alunoParaDeletar != null) {
@@ -594,7 +654,7 @@ public class CrudAluno {
 
 	}
 
-	private boolean hasNumbers(String texto) {
+	private boolean temNummeros(String texto) {
 		return texto.matches(".*\\d.*");
 	}
 }
